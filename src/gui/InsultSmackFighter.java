@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui;
 
 
@@ -15,6 +12,7 @@ import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.Timer;
 
 
@@ -27,10 +25,12 @@ public class InsultSmackFighter implements ActionListener{
 	
 	// is the game running
     private static boolean running;
+    private static boolean gameOn;
     protected ScreenManager s;
     private long timePassed;
     protected Graphics2D g;
     private Timer gameTime;
+    
     
     private Player torvalds;
     private Player gates;
@@ -41,6 +41,12 @@ public class InsultSmackFighter implements ActionListener{
 	public static void stop(){
 		running = false;
 	}
+        
+        public static void start(){
+		gameOn = true;
+	}
+    
+    
 	
 	public void run(){
 		try{
@@ -63,14 +69,15 @@ public class InsultSmackFighter implements ActionListener{
 		w.setBackground(Color.black);
 		w.setForeground(Color.black);
 		running = true;
+                gameOn = false;
                 int animationTime = 30;
                 // kaikki muu peli-initialisointi tänne 
                 gameTime = new Timer(10,this);    
                 // torvalds x =0, y = 200, runleft
-                torvalds = new Player("torvalds",0,200,1);
+                torvalds = new Player("torvalds",0,400,1);
                 torvalds.loadAnimations(1, 1, 1, 1, animationTime, "torvalds", "gif");
                 //gates x=500, y=200, runright
-                gates = new Player("gates",500,200,2);
+                gates = new Player("gates",600,400,2);
                 gates.loadAnimations(1, 3, 1, 3, animationTime, "gates", "gif");
                 pmanager.setPlayers(torvalds,gates);
                 gameTime.start();
@@ -109,6 +116,7 @@ public class InsultSmackFighter implements ActionListener{
 	
         @Override
         public void actionPerformed(ActionEvent e) {
+
             UpdateAll.update(timePassed, s.getWidth(),s.getHeight());   
         }
 	/*
@@ -118,7 +126,9 @@ public class InsultSmackFighter implements ActionListener{
                 Toolkit.getDefaultToolkit().sync();    
 		//Window w = s.getFullScreenWindow();
                 this.drawer = (Graphics2D) g;
-                DrawAll.drawAll();
+                DrawAll.drawAll(gameOn); 
+           
+                
 	}
         
      

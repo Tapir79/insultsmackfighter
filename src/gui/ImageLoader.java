@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
  */
 public class ImageLoader {
     
+    static ImageIcon startscreen = new ImageIcon(ImageLoader.class.getResource("/images/startscreen.gif"));
     static ImageIcon bg = new ImageIcon(ImageLoader.class.getResource("/images/bg.gif"));
     static ImageIcon player = new ImageIcon(ImageLoader.class.getResource("/images/torvalds1.gif"));
     static ImageIcon player2 = new ImageIcon(ImageLoader.class.getResource("/images/gates1.gif"));
@@ -23,6 +24,11 @@ public class ImageLoader {
     
 //    static  BufferedImage bufbg = loadBufImage("/images/bg.gif");
    
+    public static Image getStartScreen(){
+        System.out.println("Loading startscreen");
+        
+        return startscreen.getImage();
+    }    
     public static  Image getBG(){
         return bg.getImage();
     }
@@ -37,7 +43,7 @@ public class ImageLoader {
     
     public static Image loadImage(String nimi, int jarjnro, String failityyppi){
         System.out.println("entering imageloader");
-         System.out.println("Trying to load image "+nimi+jarjnro+"."+failityyppi);
+        System.out.println("Trying to load image "+nimi+jarjnro+"."+failityyppi);
         ImageIcon uusi = new ImageIcon(ImageLoader.class.getResource("/images/"+nimi+jarjnro+"."+failityyppi));
         System.out.println("loaded.");
        

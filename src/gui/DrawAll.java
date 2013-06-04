@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui;
 
 import gameobjects.Player;
@@ -19,17 +16,27 @@ public class DrawAll extends InsultSmackFighter{
 //    }
 //    private static Graphics2D g;
     
-    public static void drawAll(){
-        
-        drawBG();
-        drawPlayer1(GameManager.getTorvalds());
-        drawPlayer2(GameManager.getGates());
+    public static void drawAll(boolean gameOn){
+        if(gameOn){
+            drawBG();
+            drawPlayer1(GameManager.getTorvalds());
+            drawPlayer2(GameManager.getGates());
+        }
+        else{
+            drawStart();
 //        g = drawer;
+        }
+        
+    }
+    
+     public static void drawStart(){
+        drawer.drawImage(ImageLoader.getStartScreen(), 0, 0, null);
     }
     
     private static void drawBG(){
         drawer.drawImage(ImageLoader.getBG(), 0, 0, null); 
     }
+    
      private static void drawPlayer2(Player gates){
        //drawer.drawImage(ImageLoader.getPlayer2(),gates.getX(),gates.getY(),null);
          drawer.drawImage(gates.getCurrentImage(),gates.getX(),gates.getY(),null);

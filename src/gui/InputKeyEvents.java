@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui;
 
 import gameobjects.Player;
@@ -46,6 +43,10 @@ public class InputKeyEvents extends KeyAdapter{
                         if(itnext == KeyEvent.VK_ESCAPE){
                             InsultSmackFighter.stop();
                         }
+                        if(itnext == KeyEvent.VK_ENTER ){
+                            InsultSmackFighter.start();
+                        }
+                        
                         if(itnext == KeyEvent.VK_A){                         
                             torvalds.setXDisplacement(-1*steps,true);
                             torvalds.updateState(LEFT);
